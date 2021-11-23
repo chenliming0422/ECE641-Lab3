@@ -48,4 +48,4 @@ xlabel('first component')
 ylabel('second component')
 
 x = x';
-save data x /ascii
+%save data x /ascii
