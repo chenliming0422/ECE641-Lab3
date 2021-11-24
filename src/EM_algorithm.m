@@ -9,7 +9,7 @@ fprintf('data dimension is: %0d\n', p);
 % data number
 N = size(data, 1);
 fprintf('total data number is: %0d\n', N);
-%% E-step: Compute expected sufficient statistics
+%% Iterations
 u_est = u_init;
 R_est = R_init;
 pi_est = pi_init;
