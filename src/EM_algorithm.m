@@ -19,6 +19,7 @@ for iters = 1:iteration_num
     t_2_k = cell(1,K);
     t_2_k(:) = {zeros(2,2)};
     for i = 1:N
+        % inference, E-step
         N_k_sum = 0;
         for j = 1:K           
             N_k_sum = N_k_sum + mvnpdf(data(i,:), u_est(j,:), R_est{j})*pi_est(j);
@@ -32,7 +33,7 @@ for iters = 1:iteration_num
         end 
     end
     
-    % update parameters
+    % update parameters, M-step
     for j = 1:K
         pi_est(j) = N_k(j) / N;
         u_est(j,:) = t_1_k(j,:) / N_k(j);
