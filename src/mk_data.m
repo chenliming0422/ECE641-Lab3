@@ -42,10 +42,10 @@ SwitchVar3 = SwitchVar>=(pi1+pi2);
 x = SwitchVar1.*x1 + SwitchVar2.*x2 + SwitchVar3.*x3;
 
 
-plot(x(1,:),x(2,:),'o');
-title('Scatter Plot of Multimodal Data')
-xlabel('first component')
-ylabel('second component')
+% plot(x(1,:),x(2,:),'o');
+% title('Scatter Plot of Multimodal Data')
+% xlabel('first component')
+% ylabel('second component')
 
 x = x';
 %save data x /ascii
