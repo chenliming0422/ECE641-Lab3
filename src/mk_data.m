@@ -49,3 +49,4 @@ x = SwitchVar1.*x1 + SwitchVar2.*x2 + SwitchVar3.*x3;
 
 x = x';
 %save data x /ascii
+save '../Output/generated_data.mat' x -ascii
