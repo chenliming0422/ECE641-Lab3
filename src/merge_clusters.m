@@ -1,4 +1,4 @@
-function [pi_merge, u_merge, R_merge] = merge_clusters(pi, u, R)
+function [pi_merge, u_merge, R_merge] = merge_clusters(pi, u, R, N)
 % 
 K = size(pi, 1);
 pi_merge = pi;
@@ -13,7 +13,7 @@ R_lm = (pi(1)*(R{1} + (u(1) - u_lm)*(u(1) - u_lm)') +...
 d_min = (1/2)*N*pi(1)*log(det(R_lm)./det(R{1})) + (1/2)*N*pi(2)*log(det(R_lm)./det(R{2}));
 
 for L = 1 : K-1
-    for m = l+1 : K
+    for m = L+1 : K
         pi_lm = pi(L) + pi(m);
         u_lm = (pi(L)*u(L,:) + pi(m)*u(m,:)) ./ pi_lm;
         R_lm = (pi(L)*(R{L} + (u(L) - u_lm)*(u(L) - u_lm)') +...
@@ -21,7 +21,7 @@ for L = 1 : K-1
             
         d = (1/2)*N*pi(L)*log(det(R_lm)./det(R{L})) + (1/2)*N*pi(m)*log(det(R_lm)./det(R{m}));
         
-        if d < d_min
+        if d <= d_min
             L_min = L;
             m_min = m;
         end

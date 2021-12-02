@@ -19,4 +19,4 @@ R_init(:) = {diag([1, 1])};
 u_init = [x(1,:); x(2,:); x(3,:)];
 iteration_num = 20;
 %
-[u_est, R_est, pi_est] = EM_algorithm(u_init, R_init, pi_init, x, iteration_num);
+[pi_est, u_est, R_est] = EM_algorithm(pi_init, u_init, R_init, x, iteration_num);

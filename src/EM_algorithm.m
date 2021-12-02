@@ -1,4 +1,4 @@
-function [u_est, R_est, pi_est] = EM_algorithm(u_init, R_init, pi_init, data, iteration_num)
+function [pi_est, u_est, R_est, criterium] = EM_algorithm(pi_init, u_init, R_init, data, iteration_num)
 % cluster number
 disp('Gaussian mixture model info:');
 K = size(pi_init, 1);
@@ -13,6 +13,7 @@ fprintf('total data number is: %0d\n', N);
 u_est = u_init;
 R_est = R_init;
 pi_est = pi_init;
+criterium = zeros(1, iteration_num);
 for iters = 1:iteration_num
     N_k = zeros(K, 1);
     t_1_k = zeros(K, 2);
@@ -39,5 +40,7 @@ for iters = 1:iteration_num
         u_est(j,:) = t_1_k(j,:) / N_k(j);
         R_est{j} = (t_2_k{j}./N_k(j)) - (t_1_k(j,:)'*t_1_k(j,:))./(N_k(j) * N_k(j));
     end
+    
+    criterium(iters) = compute_MDL(K, pi_est, u_est, R_est, data);
 end
 end
